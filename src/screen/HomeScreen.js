@@ -17,7 +17,7 @@ export default function HomeScreen(props) {
         <SafeAreaView style={styles.container}>
             <Text style={styles.titulo}>Personaje</Text>
             <FlatList
-                style={{ backgroundColor: '#222E24' }}
+                style={{ backgroundColor: '#E0E0E0' }}
                 data={characters}
                 showsVerticalScrollIndicator={false}
                 keyExtractor={(characters) => String(characters.id)}

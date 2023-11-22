@@ -1,19 +1,25 @@
 import React from 'react';
-import { View, Text, StyleSheet, ScrollView, Alert } from 'react-native';
-import { Avatar, Button } from 'react-native-paper';
+import { View, Text, StyleSheet, ScrollView, Alert, Image } from 'react-native';
+import { Avatar, Button, IconButton } from 'react-native-paper';
 import { useAuth } from '../hooks/useAuth';
-import Menu from '../components/Menu/Menu';
 import { userController } from '../api/user';
 import { getFavoriteApi } from '../api/favoritos';
+import { useNavigation } from '@react-navigation/native';
 
 export default function Account() {
     const { logout, user, upDateUser } = useAuth();
     console.log('Datos del usuario:', user);
 
+    const navigation = useNavigation(); // Obtén el objeto de navegación
+    const navigateToChangeProfile = () => {
+        // Navegar a la página de cambios de perfil
+        navigation.navigate('ChangeProfile');
+    };
+
     const logoutAlert = () => {
         Alert.alert(
             'Cerrar sesión',
-            '¿Estas seguro que deseas cerrar sesión?',
+            '¿Estás seguro de que deseas cerrar sesión?',
             [
                 {
                     text: 'Cancelar',
@@ -26,7 +32,6 @@ export default function Account() {
                         const data = {
                             favoritos: pjFavoritos,
                         };
-                        // console.log("Favoritos",pjFavoritos)
                         await userController.actualizaUser(user.id, data);
                         upDateUser('favoritos', pjFavoritos);
                         logout();
@@ -39,19 +44,25 @@ export default function Account() {
 
     return (
         <View style={styles.container}>
-            {/* <View style={styles.header}>
-        <Avatar.Image size={200} source={require('../assets/person1.jpeg')} />
-      </View> */}
             <ScrollView>
                 <View style={styles.mainContainer}>
+                    <View style={styles.header}>
+                        <Image
+                            source={require('../assets/person1.jpeg')}
+                            style={styles.profileImage}
+                        />
+                    </View>
                     <Text style={styles.title}>Bienvenido</Text>
                     <Text style={styles.name}>
                         {user.firstname && user.lastname
                             ? `${user.firstname} ${user.lastname}`
                             : user.email}
+                        <IconButton
+                            icon='open-in-new' // Cambiar a "edit" si es necesario
+                            size={22}
+                            onPress={navigateToChangeProfile}
+                        />
                     </Text>
-
-                    <Menu />
 
                     <Button
                         mode='contained'
@@ -62,9 +73,6 @@ export default function Account() {
                     </Button>
                 </View>
             </ScrollView>
-            {/* <View style={styles.footer}>
-
-      </View> */}
         </View>
     );
 }
@@ -72,18 +80,26 @@ export default function Account() {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#000',
+        backgroundColor: '#E0E0E0',
+    },
+    header: {
+        alignItems: 'center',
+        marginBottom: 20,
+    },
+    profileImage: {
+        width: 100,
+        height: 100,
+        borderRadius: 50,
     },
     title: {
-        color: '#79B547',
+        color: '#000',
         fontSize: 40,
         fontWeight: 'bold',
         marginBottom: 10,
+        textAlign: 'center',
     },
     mainContainer: {
         flex: 1,
-        // justifyContent: 'center',
-        // alignItems: 'center',
         paddingTop: 15,
         marginHorizontal: 20,
     },
@@ -91,7 +107,7 @@ const styles = StyleSheet.create({
         fontSize: 20,
         fontWeight: 'bold',
         marginBottom: 10,
-        color: '#79B547',
+        color: '#000',
         textAlign: 'center',
     },
     button: {

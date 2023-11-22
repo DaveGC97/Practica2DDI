@@ -1,26 +1,22 @@
 ﻿export const accountMenu = [
     {
-        title: 'Cambiar nombre y apellido',
-        description: 'Cambiar nombre y apellido de tu cuenta',
-        leftIcon: 'account-cog',
+        title: 'nombre',
+        leftIcon: 'account',
         screen: 'ChangeName',
     },
     {
-        title: 'Cambiar email',
-        description: 'Cambiar email de tu cuenta',
-        leftIcon: 'email-sync-outline',
+        title: 'correo',
+        leftIcon: 'email',
         screen: 'ChangeEmail',
     },
     {
-        title: 'Cambiar nombre de usuario',
-        description: 'Cambiar username de tu cuenta',
-        leftIcon: 'account-convert',
+        title: 'nombre de usuario',
+        leftIcon: 'account-box-outline',
         screen: 'ChangeUsername',
     },
     {
-        title: 'Cambiar contraseña',
-        description: 'Cambiar contraseña de tu cuenta',
-        leftIcon: 'key-outline',
+        title: 'contraseña',
+        leftIcon: 'lock',
         screen: 'ChangePassword',
     },
 ];

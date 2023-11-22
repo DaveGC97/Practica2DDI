@@ -6,6 +6,9 @@ import { Image } from 'react-native';
 import StackNavigation from '../StackNavigation/StackNavigation';
 import StackFavoritos from '../StackNavigation/StackFavoritos';
 import StackAccount from '../StackNavigation/StackAccount';
+import StackHome from '../StackNavigation/StackHome';
+import StackCategorias from '../StackNavigation/StackCategorias';
+import StackReseñas from '../StackNavigation/StackReseñas';
 
 const TabNavigations = () => {
     const Tab = createBottomTabNavigator();
@@ -16,43 +19,43 @@ const TabNavigations = () => {
             })}
         >
             <Tab.Screen
+                name='StackHome'
+                component={StackHome}
+                options={{
+                    title: 'Inicio',
+                    headerTitleAlign: 'center',
+                    tabBarLabel: '',
+                    tabBarStyle: { backgroundColor: '#000' },
+                }}
+            />
+            <Tab.Screen
+                name='StackCategorias'
+                component={StackCategorias}
+                options={{
+                    title: 'Categorias',
+                    headerTitleAlign: 'center',
+                    tabBarLabel: '',
+                    tabBarStyle: { backgroundColor: '#000' },
+                }}
+            />
+            <Tab.Screen
+                name='StackReseñas'
+                component={StackReseñas}
+                options={{
+                    title: 'Reseñas',
+                    headerTitleAlign: 'center',
+                    tabBarLabel: '',
+                    tabBarStyle: { backgroundColor: '#000' },
+                }}
+            />
+            <Tab.Screen
                 name='StackAccount'
                 component={StackAccount}
                 options={{
-                    title: 'Cuenta',
+                    title: 'Perfil',
+                    headerTitleAlign: 'center',
                     tabBarLabel: '',
-                    tabBarStyle: { backgroundColor: '#222E24' },
-                }}
-            />
-
-            <Tab.Screen
-                name='StackNavigation'
-                component={StackNavigation}
-                options={{
-                    title: '',
-                    headerTransparent: true,
-                    tabBarLabel: '',
-                    tabBarStyle: { backgroundColor: '#222E24' },
-                    tabBarIcon: () => (
-                        <Image
-                            source={require('../../../assets/rick1.png')}
-                            style={{
-                                width: 130,
-                                height: 130,
-                                marginBottom: 65,
-                            }}
-                        />
-                    ),
-                }}
-            />
-
-            <Tab.Screen
-                name='Favorites'
-                component={StackFavoritos}
-                options={{
-                    title: 'Favoritos',
-                    tabBarLabel: '',
-                    tabBarStyle: { backgroundColor: '#222E24' },
+                    tabBarStyle: { backgroundColor: '#000' },
                 }}
             />
         </Tab.Navigator>
@@ -60,10 +63,19 @@ const TabNavigations = () => {
 };
 const setIcon = (route, routeStatus) => {
     let iconName = '';
-    let color = '#116B1D';
+    let color = '#B6E3BA';
 
     if (routeStatus.focused) {
-        color = '#32B444';
+        color = '#24EF2C';
+    }
+    if (route.name === 'StackHome') {
+        iconName = 'home';
+    }
+    if (route.name === 'StackCategorias') {
+        iconName = 'list';
+    }
+    if (route.name === 'StackReseñas') {
+        iconName = 'star-half-o';
     }
     if (route.name === 'Favorites') {
         iconName = 'heart';

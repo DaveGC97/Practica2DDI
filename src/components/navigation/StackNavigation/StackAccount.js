@@ -1,6 +1,7 @@
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import React from 'react';
 import Account from '../../../screen/Account';
+import ChangeProfile from '../../../screen/ChangeProfile';
 import ChangeName from '../../../screen/ChangeName/ChangeName';
 import ChangeEmail from '../../../screen/ChangeEmail/ChangeEmail';
 import ChangeUsername from '../../../screen/ChangeUsername/ChangeUsername';
@@ -11,7 +12,7 @@ export default function StackAccount() {
     return (
         <Stack.Navigator initialRouteName='Account'>
             <Stack.Screen
-                name='Acoount'
+                name='Account'
                 component={Account}
                 options={{
                     title: '',
@@ -19,10 +20,18 @@ export default function StackAccount() {
                 }}
             />
             <Stack.Screen
+                name='ChangeProfile'
+                component={ChangeProfile}
+                options={{
+                    title: 'Cambiar Datos',
+                    headerTransparent: true,
+                }}
+            />
+            <Stack.Screen
                 name='ChangeName'
                 component={ChangeName}
                 options={{
-                    title: '',
+                    title: 'Cambiar Nombre',
                     headerTransparent: true,
                 }}
             />
@@ -30,7 +39,7 @@ export default function StackAccount() {
                 name='ChangeEmail'
                 component={ChangeEmail}
                 options={{
-                    title: '',
+                    title: 'Cambiar Correo Electrónico',
                     headerTransparent: true,
                 }}
             />
@@ -38,7 +47,7 @@ export default function StackAccount() {
                 name='ChangeUsername'
                 component={ChangeUsername}
                 options={{
-                    title: '',
+                    title: 'Cambiar Nombre de Usuario',
                     headerTransparent: true,
                 }}
             />
@@ -46,7 +55,7 @@ export default function StackAccount() {
                 name='ChangePassword'
                 component={ChangePassword}
                 options={{
-                    title: '',
+                    title: 'Cambiar Contraseña',
                     headerTransparent: true,
                 }}
             />
