@@ -9,6 +9,7 @@ import StackAccount from '../StackNavigation/StackAccount';
 import StackHome from '../StackNavigation/StackHome';
 import StackCategorias from '../StackNavigation/StackCategorias';
 import StackReseñas from '../StackNavigation/StackReseñas';
+import StackMapa from '../StackNavigation/StackMapa';
 
 const TabNavigations = () => {
     const Tab = createBottomTabNavigator();
@@ -33,6 +34,16 @@ const TabNavigations = () => {
                 component={StackCategorias}
                 options={{
                     title: 'Categorias',
+                    headerTitleAlign: 'center',
+                    tabBarLabel: '',
+                    tabBarStyle: { backgroundColor: '#000' },
+                }}
+            />
+            <Tab.Screen
+                name='StackMapa'
+                component={StackMapa}
+                options={{
+                    title: 'Mapa',
                     headerTitleAlign: 'center',
                     tabBarLabel: '',
                     tabBarStyle: { backgroundColor: '#000' },
@@ -76,6 +87,9 @@ const setIcon = (route, routeStatus) => {
     }
     if (route.name === 'StackReseñas') {
         iconName = 'star-half-o';
+    }
+    if (route.name === 'StackMapa') {
+        iconName = 'map-marker';
     }
     if (route.name === 'Favorites') {
         iconName = 'heart';

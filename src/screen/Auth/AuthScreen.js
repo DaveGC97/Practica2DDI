@@ -14,7 +14,7 @@ import { styles } from './AuthScreen.styles';
 
 export default function AuthScreen() {
     const [showLogin, setShowLogin] = useState(false);
-    const imageSource = require('../../assets/rick2.png');
+    const imageSource = require('../../assets/qlogo.png');
 
     const cambioAuth = () => {
         setShowLogin(!showLogin);
@@ -22,7 +22,7 @@ export default function AuthScreen() {
 
     return (
         <ImageBackground
-            source={require('../../assets/rick5.png')}
+            source={require('../../assets/fondo.jpg')}
             style={styles.backgroundImage}
         >
             <View style={styles.container}>

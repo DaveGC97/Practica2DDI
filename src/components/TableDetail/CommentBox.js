@@ -34,6 +34,6 @@ const styles = StyleSheet.create({
     },
 
     view: {
-        backgroundColor: '#f5f5f5',
+        backgroundColor: '#E0E0E0',
     },
 });

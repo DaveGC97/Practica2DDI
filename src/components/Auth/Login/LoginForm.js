@@ -1,4 +1,4 @@
-import { View, Text } from 'react-native';
+import { View } from 'react-native';
 import React from 'react';
 import { TextInput, Button } from 'react-native-paper';
 import { styles } from './LoginForm.styles';
@@ -15,7 +15,7 @@ export default function LoginForm(props) {
 
     const formik = useFormik({
         initialValues: {
-            username: '',
+            email: '',
             password: '',
         },
         validationSchema: Yup.object({
@@ -24,11 +24,9 @@ export default function LoginForm(props) {
         }),
         validateOnChange: false,
         onSubmit: async (formData) => {
-            //const { email, password } = formData;
             try {
                 const { email, password } = formData;
                 const response = await authApi.Login(email, password);
-                //console.log(response);
                 login(response.jwt);
             } catch (error) {
                 Toast.show('Usuario o contraseña incorrectas', {
@@ -42,7 +40,7 @@ export default function LoginForm(props) {
         <View style={styles.container}>
             <TextInput
                 label='Correo electronico'
-                style={globalStyles.form.input}
+                style={{ ...styles.input, underlineColor: 'transparent' }}
                 autoCapitalize='none'
                 onChangeText={(text) => formik.setFieldValue('email', text)}
                 value={formik.values.email}
@@ -50,7 +48,7 @@ export default function LoginForm(props) {
             />
             <TextInput
                 label='Contraseña'
-                style={globalStyles.form.input}
+                style={{ ...styles.input, underlineColor: 'transparent' }}
                 secureTextEntry
                 onChangeText={(text) => formik.setFieldValue('password', text)}
                 value={formik.values.password}
@@ -58,7 +56,12 @@ export default function LoginForm(props) {
             />
             <Button
                 mode='contained'
-                style={globalStyles.form.buttonText}
+                style={{
+                    ...globalStyles.form.buttonText,
+                    width: 200,
+                    backgroundColor: '#266E29',
+                    alignSelf: 'center',
+                }}
                 onPress={formik.handleSubmit}
                 loading={formik.isSubmitting}
             >

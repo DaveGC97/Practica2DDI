@@ -3,8 +3,6 @@ import { StyleSheet } from 'react-native';
 export const styles = StyleSheet.create({
     container: {
         flex: 1,
-        // backgroundColor: 'rgba(37, 139, 197, 1)',
-        //   alignItems: 'center',
         justifyContent: 'center',
         marginHorizontal: 20,
     },
@@ -13,14 +11,13 @@ export const styles = StyleSheet.create({
     },
     image: {
         width: 200,
-        height: 250,
-        // borderRadius: 15,
+        height: 200,
+        borderRadius: 100, // La mitad del ancho y alto para hacerlo circular
         alignSelf: 'center',
         marginBottom: 20,
     },
     backgroundImage: {
         flex: 1,
         resizeMode: 'cover',
-        // marginTop: 25
     },
 });

@@ -43,7 +43,7 @@ export default function Register(props) {
         <View style={styles.container}>
             <TextInput
                 label='Correo electronico'
-                style={globalStyles.form.input}
+                style={styles.input}
                 autoCapitalize='none'
                 onChangeText={(text) => formik.setFieldValue('email', text)}
                 value={formik.values.email}
@@ -51,7 +51,7 @@ export default function Register(props) {
             />
             <TextInput
                 label='Nombre de usuario'
-                style={globalStyles.form.input}
+                style={styles.input}
                 autoCapitalize='none'
                 onChangeText={(text) => formik.setFieldValue('username', text)}
                 value={formik.values.username}
@@ -59,7 +59,7 @@ export default function Register(props) {
             />
             <TextInput
                 label='Contraseña'
-                style={globalStyles.form.input}
+                style={styles.input}
                 autoCapitalize='none'
                 secureTextEntry
                 onChangeText={(text) => formik.setFieldValue('password', text)}
@@ -69,7 +69,7 @@ export default function Register(props) {
 
             <TextInput
                 label='Repetir contraseña'
-                style={globalStyles.form.input}
+                style={styles.input}
                 autoCapitalize='none'
                 secureTextEntry
                 onChangeText={(text) =>
@@ -81,7 +81,12 @@ export default function Register(props) {
 
             <Button
                 mode='contained'
-                style={globalStyles.form.buttonSubmit}
+                style={{
+                    ...globalStyles.form.buttonText,
+                    width: 200,
+                    backgroundColor: '#266E29',
+                    alignSelf: 'center',
+                }}
                 onPress={formik.handleSubmit}
                 loading={formik.isSubmitting}
             >
