@@ -8,7 +8,7 @@ import {
     StyleSheet,
     ScrollView,
 } from 'react-native';
-import { List, Card } from 'react-native-paper';
+import { List, Card, IconButton } from 'react-native-paper';
 import { getPlaces, getPlaceDetails } from '../../../api/ApiGoogle';
 import PlaceDetailComponent from './PlaceDetailComponent';
 
@@ -121,10 +121,11 @@ const HomeScreen = ({ navigation }) => {
                     <Card key={place.id} style={styles.card}>
                         <Card.Content style={styles.cardContent}>
                             <View style={styles.iconContainer}>
-                                <List.Icon
+                                <IconButton
                                     icon='hamburger'
-                                    color='#000'
-                                    style={styles.hamburgerIcon}
+                                    size={60}
+                                    marginStart={-9}
+                                    disabled
                                 />
                             </View>
                             <View style={styles.textContainer}>
@@ -153,6 +154,11 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         padding: 14,
     },
+    textContainer: {
+        marginStart: 5,
+        width: 220,
+        marginTop: -20,
+    },
     card: {
         marginBottom: 15,
         height: 160,
@@ -174,11 +180,6 @@ const styles = StyleSheet.create({
         marginLeft: -20,
         paddingVertical: 5,
     },
-    hamburgerIcon: {},
-    textContainer: {
-        flex: 1,
-        marginTop: -30,
-    },
     title: {
         color: '#000',
         fontWeight: 'bold',
@@ -190,7 +191,8 @@ const styles = StyleSheet.create({
     },
     detail: {
         color: '#000',
-        fontSize: 12, // Ajusta según sea necesario
+        fontSize: 12,
+        marginTop: 15, // Ajusta según sea necesario
     },
     rightArrowIcon: {
         marginLeft: 'auto',
