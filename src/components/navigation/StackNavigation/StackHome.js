@@ -8,9 +8,9 @@ import {
     StyleSheet,
     ScrollView,
 } from 'react-native';
-import StackAccount from '../StackNavigation/StackAccount';
-import { getPlaces, getPlaceDetails } from '../../../api/ApiGoogle';
 import { List, Card } from 'react-native-paper';
+import { getPlaces, getPlaceDetails } from '../../../api/ApiGoogle';
+import PlaceDetailComponent from './PlaceDetailComponent';
 
 const StackHome = ({ navigation }) => {
     const Stack = createNativeStackNavigator();
@@ -52,14 +52,21 @@ const StackHome = ({ navigation }) => {
                 name='Home'
                 component={HomeScreen}
                 options={{
-                    headerTitle: '', // Esto quita el texto "Home"
+                    headerTitle: '',
                 }}
+            />
+            <Stack.Screen
+                name='PlaceDetail'
+                component={PlaceDetailComponent}
+                options={({ route }) => ({
+                    title: 'Detalles',
+                })}
             />
         </Stack.Navigator>
     );
 };
 
-const HomeScreen = () => {
+const HomeScreen = ({ navigation }) => {
     const [places, setPlaces] = useState([]);
 
     useEffect(() => {
@@ -105,31 +112,36 @@ const HomeScreen = () => {
     return (
         <ScrollView contentContainerStyle={styles.container}>
             {places.map((place) => (
-                <Card key={place.id} style={styles.card}>
-                    <Card.Content style={styles.cardContent}>
-                        <View style={styles.iconContainer}>
+                <TouchableOpacity
+                    key={place.id}
+                    onPress={() =>
+                        navigation.navigate('PlaceDetail', { place })
+                    }
+                >
+                    <Card key={place.id} style={styles.card}>
+                        <Card.Content style={styles.cardContent}>
+                            <View style={styles.iconContainer}>
+                                <List.Icon
+                                    icon='hamburger'
+                                    color='#000'
+                                    style={styles.hamburgerIcon}
+                                />
+                            </View>
+                            <View style={styles.textContainer}>
+                                <Text style={styles.title}>{place.name}</Text>
+                                <Text style={styles.detail}>
+                                    Reseñas: {place.reviewCount} | Dirección:{' '}
+                                    {place.detail}
+                                </Text>
+                            </View>
                             <List.Icon
-                                icon='hamburger'
+                                icon='chevron-right'
                                 color='#000'
-                                style={styles.hamburgerIcon}
+                                style={styles.rightArrowIcon}
                             />
-                        </View>
-                        <View style={styles.textContainer}>
-                            <List.Item
-                                title={place.name}
-                                titleStyle={styles.title}
-                                descriptionStyle={styles.description}
-                                description={`Reseñas: ${place.reviewCount}`}
-                            />
-                            <Text style={styles.detail}>{place.detail}</Text>
-                        </View>
-                        <List.Icon
-                            icon='chevron-right'
-                            color='#000'
-                            style={styles.rightArrowIcon}
-                        />
-                    </Card.Content>
-                </Card>
+                        </Card.Content>
+                    </Card>
+                </TouchableOpacity>
             ))}
         </ScrollView>
     );
@@ -144,7 +156,7 @@ const styles = StyleSheet.create({
     card: {
         marginBottom: 15,
         height: 160,
-        width: '100%',
+        width: 352,
     },
     cardContent: {
         flexDirection: 'row',
@@ -162,9 +174,7 @@ const styles = StyleSheet.create({
         marginLeft: -20,
         paddingVertical: 5,
     },
-    hamburgerIcon: {
-        color: 'white',
-    },
+    hamburgerIcon: {},
     textContainer: {
         flex: 1,
         marginTop: -30,
@@ -172,12 +182,15 @@ const styles = StyleSheet.create({
     title: {
         color: '#000',
         fontWeight: 'bold',
+        fontSize: 16, // Ajusta según sea necesario
     },
     description: {
         color: '#000',
+        fontSize: 14, // Ajusta según sea necesario
     },
     detail: {
         color: '#000',
+        fontSize: 12, // Ajusta según sea necesario
     },
     rightArrowIcon: {
         marginLeft: 'auto',
